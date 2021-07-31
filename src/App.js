@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import Home from './Components/Home';
+import Products from './Components/Products';
 
 export default function OliverTakeHome() {
   return (
@@ -14,6 +15,9 @@ export default function OliverTakeHome() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/products">
+            <Products />
           </Route>
 
         </Switch>
