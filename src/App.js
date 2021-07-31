@@ -5,6 +5,7 @@ import "./Styles/styles.css";
 import Home from "./Components/Home";
 import Products from "./Components/Products";
 import Product from "./Components/Product";
+import Review from "./Components/Review";
 
 export default function OliverTakeHome() {
   return (
@@ -19,6 +20,9 @@ export default function OliverTakeHome() {
           </Route>
           <Route exact path="/product/:productId">
             <Product />
+          </Route>
+          <Route exact path="/product/review/:productId">
+            <Review />
           </Route>
         </Switch>
       </div>

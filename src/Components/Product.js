@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Review from "./Review";
+import { useParams, Link } from "react-router-dom";
+import ReviewCard from "./ReviewCard";
 
 const Product = () => {
   let { productId } = useParams();
   const [reviews, setReviews] = useState();
   const [productData, setProductData] = useState();
 
+  // TODO: lift API calls out into a reusable custom hook
   useEffect(() => {
     fetch(`http://localhost:3004/products/${productId}/reviews`)
       .then((response) => response.json())
@@ -27,9 +28,15 @@ const Product = () => {
     return (
       <div className="container">
         <h1>{productData.name}</h1>
-        <h3>Average rating: {averageRating} / 5</h3>
+        {/* TODO: replace with star rating component */}
+        {averageRating ? (
+          <h3>Average rating: {averageRating} / 5</h3>
+        ) : (
+          <h3>Unrated</h3>
+        )}
+        <Link to={`review/${productId}`}>Leave a review</Link>
         {reviews.map((review) => (
-          <Review {...review} key={review.id} />
+          <ReviewCard {...review} key={review.id} />
         ))}
       </div>
     );
