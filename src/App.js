@@ -1,12 +1,10 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from './Components/Home';
-import Products from './Components/Products';
+import "./Styles/styles.css";
+import Home from "./Components/Home";
+import Products from "./Components/Products";
+import Product from "./Components/Product";
 
 export default function OliverTakeHome() {
   return (
@@ -19,7 +17,9 @@ export default function OliverTakeHome() {
           <Route exact path="/products">
             <Products />
           </Route>
-
+          <Route exact path="/product/:productId">
+            <Product />
+          </Route>
         </Switch>
       </div>
     </Router>
