@@ -28,11 +28,19 @@
     },
     {
       "author": "new",
-      "star_rating": 5,
+      "star_rating": 2,
       "headline": "Love it",
       "body": "Would rent this dining room table one hundred times over.",
       "productId": "0",
       "id": 2
+    },
+    {
+      "author": "new",
+      "star_rating": 4,
+      "headline": "New review",
+      "body": "From a person who has something to say",
+      "productId": "0",
+      "id": 3
     }
   ]
 }
