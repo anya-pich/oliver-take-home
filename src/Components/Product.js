@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReviewCard from "./ReviewCard";
+import SortReview from "./SortReview";
 
 const Product = () => {
   let { productId } = useParams();
   const [reviews, setReviews] = useState();
   const [productData, setProductData] = useState();
+  const [sortOrder, setSortOrder] = useState("descending");
 
   // TODO: lift API calls out into a reusable custom hook
   useEffect(() => {
@@ -22,6 +24,17 @@ const Product = () => {
       .catch(console.error);
   }, [productId]);
 
+  const setSortOrder = (e) => {
+    preventDefault(e);
+    if (sortOrder == "ascending") {
+      sortedReviews = reviews.sort();
+    } else if (sortOrder == "descending") {
+      sortedReviews = reviews.sort((a, b) => b > a);
+    }
+    setReviews(sortedReviews);
+    console.log(e);
+  };
+
   if (reviews && productData) {
     const averageRating =
       reviews.reduce((sum, each) => sum + each.star_rating, 0) / reviews.length;
@@ -35,6 +48,7 @@ const Product = () => {
           <h3>Unrated</h3>
         )}
         <Link to={`review/${productId}`}>Leave a review</Link>
+        <SortReview setSortOrder={setSortOrder} />
         {reviews.map((review) => (
           <ReviewCard {...review} key={review.id} />
         ))}
